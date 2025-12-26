@@ -1,0 +1,7 @@
+John Doe
+Software Engineer
+Experienced in React, Node.js, and Cloud Architecture.
+10 years of experience building scalable web applications.
+Skills: JavaScript, TypeScript, Next.js, AWS, Docker.
+Previous Role: Senior Developer at Tech Corp.
+Education: BS in Computer Science.
