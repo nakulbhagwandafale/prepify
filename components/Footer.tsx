@@ -34,7 +34,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-7 h-7 bg-gradient-to-br from-violet-500 to-purple-600 rounded shadow-sm"></div>
+              <img
+                src="/preply_logo.png"
+                alt="Preply Logo"
+                className="w-8 h-8 rounded-lg"
+              />
               <span className="text-xl font-bold text-gray-900">Preply</span>
             </div>
             <p className="text-sm text-gray-600 leading-relaxed">
