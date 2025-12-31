@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
         if (!process.env.RAZORPAY_KEY_ID || !process.env.RAZORPAY_KEY_SECRET) {
             console.error("Razorpay credentials not configured");
             return NextResponse.json(
-                { error: "Payment service not configured" },
+                { error: "Payment service not configured. Please contact support." },
                 { status: 503 }
             );
         }
@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
         if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
             console.error("Supabase credentials not configured");
             return NextResponse.json(
-                { error: "Database service not configured" },
+                { error: "Database service not configured. Please contact support." },
                 { status: 503 }
             );
         }
@@ -41,17 +41,19 @@ export async function POST(request: NextRequest) {
 
         const { billingCycle, userId } = await request.json();
 
+        console.log("Creating order for:", { billingCycle, userId });
+
         // Validate billing cycle
         if (!billingCycle || !PRICING[billingCycle as keyof typeof PRICING]) {
             return NextResponse.json(
-                { error: "Invalid billing cycle" },
+                { error: "Invalid billing cycle selected" },
                 { status: 400 }
             );
         }
 
         if (!userId) {
             return NextResponse.json(
-                { error: "User not authenticated" },
+                { error: "Please login to continue" },
                 { status: 401 }
             );
         }
@@ -59,26 +61,44 @@ export async function POST(request: NextRequest) {
         const pricing = PRICING[billingCycle as keyof typeof PRICING];
 
         // Create Razorpay order
-        const order = await razorpay.orders.create({
-            amount: pricing.amount,
-            currency: "INR",
-            receipt: `preply_${userId}_${Date.now()}`,
-            notes: {
-                userId,
-                billingCycle,
-                plan: "pro",
-            },
-        });
+        console.log("Creating Razorpay order with amount:", pricing.amount);
 
-        // Create payment record in Supabase
-        await supabaseAdmin.from("payments").insert({
-            user_id: userId,
-            plan: "pro",
-            billing_cycle: billingCycle,
-            amount: pricing.amount,
-            razorpay_order_id: order.id,
-            status: "created",
-        });
+        let order;
+        try {
+            order = await razorpay.orders.create({
+                amount: pricing.amount,
+                currency: "INR",
+                receipt: `preply_${userId.substring(0, 8)}_${Date.now()}`,
+                notes: {
+                    userId,
+                    billingCycle,
+                    plan: "pro",
+                },
+            });
+        } catch (razorpayError: any) {
+            console.error("Razorpay order creation failed:", razorpayError);
+            return NextResponse.json(
+                { error: `Razorpay error: ${razorpayError.error?.description || razorpayError.message || "Unknown error"}` },
+                { status: 500 }
+            );
+        }
+
+        console.log("Order created:", order.id);
+
+        // Create payment record in Supabase (optional - don't fail if this fails)
+        try {
+            await supabaseAdmin.from("payments").insert({
+                user_id: userId,
+                plan: "pro",
+                billing_cycle: billingCycle,
+                amount: pricing.amount,
+                razorpay_order_id: order.id,
+                status: "created",
+            });
+        } catch (dbError) {
+            console.error("Failed to save payment record (non-critical):", dbError);
+            // Don't fail the order creation if DB insert fails
+        }
 
         return NextResponse.json({
             orderId: order.id,
@@ -86,10 +106,10 @@ export async function POST(request: NextRequest) {
             currency: "INR",
             keyId: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
         });
-    } catch (error) {
+    } catch (error: any) {
         console.error("Error creating order:", error);
         return NextResponse.json(
-            { error: "Failed to create order" },
+            { error: error.message || "Failed to create order. Please try again." },
             { status: 500 }
         );
     }
