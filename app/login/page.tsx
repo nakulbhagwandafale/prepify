@@ -48,9 +48,15 @@ export default function LoginPage() {
     <div className="min-h-screen bg-gradient-to-b from-violet-50/50 via-white to-white flex items-center justify-center px-6 py-12">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center space-x-2 hover:opacity-80 transition-opacity">
-            <div className="w-8 h-8 bg-gradient-to-br from-violet-500 to-purple-600 rounded shadow-sm"></div>
-            <span className="text-2xl font-semibold text-gray-900">Preply</span>
+          <Link href="/" className="flex items-center space-x-3 hover:opacity-90 transition-opacity">
+            <img
+              src="/preply_icon.png"
+              alt="Preply"
+              className="h-10 w-10 rounded-lg"
+            />
+            <span className="text-2xl font-bold bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">
+              Preply
+            </span>
           </Link>
         </div>
 
