@@ -88,15 +88,14 @@ export default function UpdatePasswordPage() {
         <div className="min-h-screen bg-gradient-to-b from-violet-50/50 via-white to-white flex items-center justify-center px-6 py-12">
             <div className="w-full max-w-md">
                 <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
-
                     {success ? (
                         <div className="text-center py-8">
                             <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
                                 <CheckCircle className="w-8 h-8" />
                             </div>
-                            <h2 className="text-2xl font-bold text-gray-900 mb-2">Password Reset!</h2>
+                            <h2 className="text-2xl font-bold text-gray-900 mb-2">Password Set!</h2>
                             <p className="text-gray-600 mb-6">
-                                Your password has been successfully updated. You will be redirected to login shortly.
+                                Your password has been successfully updated. You can now login with your new password.
                             </p>
                             <Link
                                 href="/login"
@@ -113,11 +112,7 @@ export default function UpdatePasswordPage() {
                                 </div>
                                 <h1 className="text-2xl font-bold text-gray-900 mb-2">Set New Password</h1>
                                 <p className="text-gray-600">
-                                    {email ? (
-                                        <>for <span className="font-medium text-gray-900">{email}</span></>
-                                    ) : (
-                                        "Enter your new password below"
-                                    )}
+                                    Create a new password for your account
                                 </p>
                             </div>
 
@@ -129,6 +124,19 @@ export default function UpdatePasswordPage() {
                             )}
 
                             <form onSubmit={handleSubmit} className="space-y-5">
+                                <div>
+                                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1.5">
+                                        Email Address
+                                    </label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        value={email || ""}
+                                        readOnly
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-gray-50 text-gray-500 cursor-not-allowed focus:outline-none"
+                                    />
+                                </div>
+
                                 <div>
                                     <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1.5">
                                         New Password
@@ -148,7 +156,7 @@ export default function UpdatePasswordPage() {
 
                                 <div>
                                     <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1.5">
-                                        Confirm Password
+                                        Confirm New Password
                                     </label>
                                     <input
                                         type="password"
@@ -168,7 +176,7 @@ export default function UpdatePasswordPage() {
                                     disabled={updating}
                                     className="w-full py-3.5 text-base font-semibold text-white bg-violet-600 rounded-xl hover:bg-violet-700 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 shadow-md disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-md"
                                 >
-                                    {updating ? "Updating Password..." : "Update Password"}
+                                    {updating ? "Setting Password..." : "Set Password"}
                                 </button>
                             </form>
                         </>

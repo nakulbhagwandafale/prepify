@@ -18,9 +18,15 @@ export async function GET(request: NextRequest) {
                         return cookieStore.getAll();
                     },
                     setAll(cookiesToSet) {
-                        cookiesToSet.forEach(({ name, value, options }) =>
-                            cookieStore.set(name, value, options)
-                        );
+                        try {
+                            cookiesToSet.forEach(({ name, value, options }) =>
+                                cookieStore.set(name, value, options)
+                            );
+                        } catch {
+                            // The `setAll` method was called from a Server Component.
+                            // This can be ignored if you have middleware refreshing
+                            // user sessions.
+                        }
                     },
                 },
             }
@@ -28,7 +34,22 @@ export async function GET(request: NextRequest) {
 
         const { error } = await supabase.auth.exchangeCodeForSession(code);
         if (!error) {
-            return NextResponse.redirect(`${origin}${next}`);
+            const forwardedHost = request.headers.get('x-forwarded-host'); // original origin before load balancer
+            const isLocalEnv = process.env.NODE_ENV === 'development';
+            if (isLocalEnv) {
+                // we can be sure that there is no load balancer in between, so no need to watch for X-Forwarded-Host
+                return NextResponse.redirect(`${origin}${next}`);
+            } else if (forwardedHost) {
+                return NextResponse.redirect(`https://${forwardedHost}${next}`);
+            } else {
+                return NextResponse.redirect(`${origin}${next}`);
+            }
+        } else {
+            console.error("Auth callback error:", error);
+            // If it's a password recovery flow that failed, try to give a meaningful error
+            if (searchParams.get("type") === "recovery") {
+                return NextResponse.redirect(`${origin}/forgot-password?error=recovery_failed`);
+            }
         }
     }
 
