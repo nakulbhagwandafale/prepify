@@ -250,16 +250,16 @@ export default function PricingPage() {
                         <div
                             key={plan.id}
                             className={`relative bg-white rounded-2xl border-2 p-6 transition-all duration-300 hover:shadow-xl ${plan.popular
-                                    ? "border-violet-500 shadow-lg shadow-violet-100"
-                                    : "border-gray-200 hover:border-violet-300"
+                                ? "border-violet-500 shadow-lg shadow-violet-100"
+                                : "border-gray-200 hover:border-violet-300"
                                 }`}
                         >
                             {/* Badge */}
                             {plan.badge && (
                                 <div
                                     className={`absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-xs font-bold ${plan.popular
-                                            ? "bg-gradient-to-r from-violet-600 to-purple-600 text-white"
-                                            : "bg-green-100 text-green-700"
+                                        ? "bg-gradient-to-r from-violet-600 to-purple-600 text-white"
+                                        : "bg-green-100 text-green-700"
                                         }`}
                                 >
                                     {plan.badge}
@@ -269,10 +269,10 @@ export default function PricingPage() {
                             {/* Plan Icon */}
                             <div
                                 className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${plan.id === "free"
-                                        ? "bg-gray-100"
-                                        : plan.popular
-                                            ? "bg-gradient-to-br from-violet-500 to-purple-600"
-                                            : "bg-violet-100"
+                                    ? "bg-gray-100"
+                                    : plan.popular
+                                        ? "bg-gradient-to-br from-violet-500 to-purple-600"
+                                        : "bg-violet-100"
                                     }`}
                             >
                                 {plan.id === "free" ? (
@@ -327,10 +327,10 @@ export default function PricingPage() {
                                 onClick={() => handleSelectPlan(plan)}
                                 disabled={processingPlan !== null}
                                 className={`w-full py-3 px-4 rounded-xl font-semibold transition-all duration-200 flex items-center justify-center gap-2 ${plan.popular
-                                        ? "bg-gradient-to-r from-violet-600 to-purple-600 text-white hover:shadow-lg hover:shadow-violet-200"
-                                        : plan.id === "free"
-                                            ? "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                                            : "bg-violet-100 text-violet-700 hover:bg-violet-200"
+                                    ? "bg-gradient-to-r from-violet-600 to-purple-600 text-white hover:shadow-lg hover:shadow-violet-200"
+                                    : plan.id === "free"
+                                        ? "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                                        : "bg-violet-100 text-violet-700 hover:bg-violet-200"
                                     } disabled:opacity-50 disabled:cursor-not-allowed`}
                             >
                                 {processingPlan === plan.id ? (
@@ -359,7 +359,7 @@ export default function PricingPage() {
                 {/* Trust Badges */}
                 <div className="text-center">
                     <p className="text-gray-500 mb-4">Trusted payment powered by</p>
-                    <div className="flex items-center justify-center gap-8">
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
                         <div className="flex items-center gap-2 text-gray-400">
                             <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />

@@ -300,7 +300,7 @@ export default function InterviewResultsPage() {
                 )}
 
                 {/* Action Bar */}
-                <div className="flex justify-center pt-8 gap-4 print:hidden">
+                <div className="flex flex-col sm:flex-row justify-center pt-8 gap-4 print:hidden">
                     <Button
                         onClick={() => window.print()}
                         variant="outline"

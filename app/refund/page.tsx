@@ -42,7 +42,7 @@ export default function RefundPolicyPage() {
                         <p className="text-gray-600 leading-relaxed">
                             Preply Pro subscriptions are sold as one-time payments for a fixed duration:
                         </p>
-                        <div className="grid grid-cols-3 gap-4 mt-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
                             <div className="bg-gray-50 rounded-xl p-4 text-center">
                                 <p className="font-bold text-gray-900">₹99</p>
                                 <p className="text-sm text-gray-500">1 Month</p>

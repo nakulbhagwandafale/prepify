@@ -194,7 +194,7 @@ export default function InterviewSessionPage() {
     }
 
     return (
-        <div className="min-h-screen bg-white text-gray-900 font-sans selection:bg-blue-100">
+        <div className="min-h-[100dvh] bg-white text-gray-900 font-sans selection:bg-blue-100 flex flex-col">
             {/* Header */}
             <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md pt-6 pb-4 px-6 md:px-8 max-w-2xl mx-auto w-full">
                 <div className="flex justify-between items-center mb-4">
@@ -224,7 +224,7 @@ export default function InterviewSessionPage() {
                 </div>
             </header>
 
-            <main className="max-w-2xl mx-auto px-6 pb-24 pt-8 md:pt-12 flex flex-col items-center">
+            <main className="max-w-2xl mx-auto px-4 md:px-6 pb-24 pt-6 md:pt-12 flex flex-col items-center flex-grow w-full">
                 {/* Question Section */}
                 <motion.div
                     key={currentQuestionIndex}
@@ -259,7 +259,7 @@ export default function InterviewSessionPage() {
                                 repeat: Infinity,
                                 ease: "easeInOut",
                             }}
-                            className="w-64 h-64 rounded-full bg-red-500/5"
+                            className="w-48 h-48 md:w-64 md:h-64 rounded-full bg-red-500/5"
                         />
                         {/* Middle Ring */}
                         <motion.div
@@ -273,7 +273,7 @@ export default function InterviewSessionPage() {
                                 ease: "easeInOut",
                                 delay: 0.5
                             }}
-                            className="absolute w-48 h-48 rounded-full bg-red-500/10"
+                            className="absolute w-32 h-32 md:w-48 md:h-48 rounded-full bg-red-500/10"
                         />
                     </div>
 
@@ -282,7 +282,7 @@ export default function InterviewSessionPage() {
                         onClick={toggleListening}
                         whileTap={{ scale: 0.95 }}
                         className={cn(
-                            "relative z-10 w-24 h-24 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300",
+                            "relative z-10 w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300",
                             isListening
                                 ? "bg-gradient-to-br from-red-500 to-pink-600 shadow-red-500/40"
                                 : "bg-gradient-to-br from-red-500 to-pink-600 shadow-red-500/30 hover:shadow-red-500/50 hover:scale-105"
@@ -296,7 +296,7 @@ export default function InterviewSessionPage() {
                                 className="absolute inset-0 bg-white/20 rounded-full"
                             />
                         )}
-                        <Mic className="w-10 h-10 text-white" />
+                        <Mic className="w-8 h-8 md:w-10 md:h-10 text-white" />
                     </motion.button>
                 </div>
 
