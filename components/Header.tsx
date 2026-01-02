@@ -12,6 +12,7 @@ export default function Header() {
   const { user, loading, signOut } = useAuth();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown when clicking outside
@@ -24,6 +25,11 @@ export default function Header() {
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Set mounted to true after first client render to avoid hydration mismatch
+  useEffect(() => {
+    setMounted(true);
   }, []);
 
   // Close mobile menu on route change
@@ -140,7 +146,7 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center space-x-3">
-            {!loading && (
+            {mounted && !loading && (
               <>
                 {user ? (
                   <div className="relative" ref={dropdownRef}>
@@ -161,7 +167,7 @@ export default function Header() {
 
                     {/* Desktop Dropdown Menu */}
                     {isDropdownOpen && (
-                      <div className="hidden md:block absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-gray-200 py-2 animate-dropdown">
+                      <div className="hidden md:block absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-gray-200 py-2 animate-in fade-in zoom-in-95 duration-200">
                         <div className="px-4 py-3 border-b border-gray-100">
                           <p className="text-sm font-medium text-gray-900 truncate">{user.email}</p>
                           <p className="text-xs text-gray-500">Logged in</p>
@@ -272,22 +278,6 @@ export default function Header() {
         </div>
       )}
 
-      {/* Dropdown Animation Styles */}
-      <style jsx>{`
-        @keyframes dropdown {
-          from {
-            opacity: 0;
-            transform: translateY(-8px) scale(0.95);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-          }
-        }
-        .animate-dropdown {
-          animation: dropdown 0.2s ease-out forwards;
-        }
-      `}</style>
     </header>
   );
 }
