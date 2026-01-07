@@ -10,7 +10,7 @@
 <br />
 
 <div align="center">
-  <h1>🎯 Preply - AI Interview Practice</h1>
+  <h1>🎯 PrepBuddyAi - AI Interview Practice</h1>
   <p><strong>Ace your next interview with AI-powered mock interviews and real-time feedback</strong></p>
   
   <a href="#demo">View Demo</a> •
@@ -25,7 +25,7 @@
 
 ## ✨ Overview
 
-**Preply** is a modern AI-powered interview practice platform that helps job seekers prepare for their interviews with personalized mock sessions, instant feedback, and performance analytics.
+**PrepBuddyAi** is a modern AI-powered interview practice platform that helps job seekers prepare for their interviews with personalized mock sessions, instant feedback, and performance analytics.
 
 Upload your resume, select your interview category, and practice with our AI interviewer that adapts questions based on your profile. Get detailed feedback on your responses and track your improvement over time.
 
@@ -34,7 +34,7 @@ Upload your resume, select your interview category, and practice with our AI int
 ## 🎬 Demo
 
 <div align="center">
-  <img src="public/demo-screenshot.png" alt="Preply Demo" width="800" />
+  <img src="public/demo-screenshot.png" alt="PrepBuddyAi Demo" width="800" />
 </div>
 
 > **Live Demo**: [Coming Soon]

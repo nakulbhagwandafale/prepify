@@ -614,7 +614,7 @@ function DashboardHeader({ email, onSignOut }: { email: string; onSignOut: () =>
             <div className="w-8 h-8 bg-gradient-to-br from-violet-500 to-purple-600 rounded-lg flex items-center justify-center text-white">
               <Award className="w-5 h-5" />
             </div>
-            <span className="hidden sm:inline">Preply</span>
+            <span className="hidden sm:inline">PrepBuddyAi</span>
           </div>
         </div>
 

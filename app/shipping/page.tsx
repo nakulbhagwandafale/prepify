@@ -4,8 +4,8 @@ import { Truck, Monitor, Zap, CheckCircle } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Shipping Policy - Preply",
-    description: "Shipping and Delivery Policy for Preply AI Interview Practice Platform.",
+    title: "Shipping Policy - PrepBuddyAi",
+    description: "Shipping and Delivery Policy for PrepBuddyAi AI Interview Practice Platform.",
 };
 
 export default function ShippingPolicyPage() {
@@ -35,7 +35,7 @@ export default function ShippingPolicyPage() {
                             </div>
                         </div>
                         <p className="text-gray-600 leading-relaxed">
-                            Preply is a digital service platform. All our products and services are delivered
+                            PrepBuddyAi is a digital service platform. All our products and services are delivered
                             electronically through our website. There are no physical goods to ship.
                         </p>
                     </div>
@@ -46,7 +46,7 @@ export default function ShippingPolicyPage() {
                             Instant Access
                         </h2>
                         <p className="text-gray-600 leading-relaxed mb-4">
-                            Upon successful payment, you will receive instant access to Preply Pro features:
+                            Upon successful payment, you will receive instant access to PrepBuddyAi Pro features:
                         </p>
                         <div className="grid md:grid-cols-2 gap-4">
                             <div className="bg-gray-50 rounded-xl p-6">
@@ -91,7 +91,7 @@ export default function ShippingPolicyPage() {
                     <section className="mb-10">
                         <h2 className="text-2xl font-bold text-gray-900 mb-4">What You Get</h2>
                         <p className="text-gray-600 leading-relaxed mb-4">
-                            With your Preply Pro subscription, you receive digital access to:
+                            With your PrepBuddyAi Pro subscription, you receive digital access to:
                         </p>
                         <ul className="list-disc pl-6 text-gray-600 space-y-2">
                             <li>Unlimited AI-powered interview practice sessions</li>
@@ -122,7 +122,7 @@ export default function ShippingPolicyPage() {
                     <section className="mb-10">
                         <h2 className="text-2xl font-bold text-gray-900 mb-4">Technical Requirements</h2>
                         <p className="text-gray-600 leading-relaxed mb-4">
-                            To access Preply services, you need:
+                            To access PrepBuddyAi services, you need:
                         </p>
                         <ul className="list-disc pl-6 text-gray-600 space-y-2">
                             <li>A modern web browser (Chrome, Firefox, Safari, Edge)</li>

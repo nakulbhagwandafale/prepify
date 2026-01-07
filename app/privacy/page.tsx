@@ -4,8 +4,8 @@ import { Shield, Eye, Lock, Database, UserCheck, Mail } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Privacy Policy - Preply",
-    description: "Privacy Policy for Preply AI Interview Practice Platform.",
+    title: "Privacy Policy - PrepBuddyAi",
+    description: "Privacy Policy for PrepBuddyAi AI Interview Practice Platform.",
 };
 
 export default function PrivacyPolicyPage() {
@@ -26,7 +26,7 @@ export default function PrivacyPolicyPage() {
                     <section className="mb-10">
                         <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Introduction</h2>
                         <p className="text-gray-600 leading-relaxed">
-                            At Preply, we are committed to protecting your privacy. This Privacy Policy explains how
+                            At PrepBuddyAi, we are committed to protecting your privacy. This Privacy Policy explains how
                             we collect, use, disclose, and safeguard your information when you use our AI-powered
                             interview practice platform.
                         </p>

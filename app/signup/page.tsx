@@ -70,11 +70,11 @@ export default function SignupPage() {
           <Link href="/" className="flex items-center space-x-3 hover:opacity-90 transition-opacity">
             <img
               src="/preply_icon.png"
-              alt="Preply"
+              alt="PrepBuddyAi"
               className="h-10 w-10 rounded-lg"
             />
             <span className="text-2xl font-bold bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">
-              Preply
+              PrepBuddyAi
             </span>
           </Link>
         </div>
@@ -82,7 +82,7 @@ export default function SignupPage() {
         <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
           <div className="text-center mb-8">
             <h1 className="text-2xl font-bold text-gray-900 mb-2">Create your account</h1>
-            <p className="text-gray-600">Get started with Preply today</p>
+            <p className="text-gray-600">Get started with PrepBuddyAi today</p>
           </div>
 
           {error && (

@@ -7,7 +7,7 @@ import type { Metadata } from "next";
 import { getAllBlogPosts } from "@/lib/blog-data";
 
 export const metadata: Metadata = {
-  title: "Blog - Preply",
+  title: "Blog - PrepBuddyAi",
   description: "Insights, updates, and best practices for interview preparation.",
 };
 

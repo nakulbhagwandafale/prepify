@@ -122,7 +122,7 @@ export const blogPosts: BlogPost[] = [
         category: "Case Study",
         title: "How Tech Startup Increased Efficiency by 300%",
         excerpt:
-            "Read how a fast-growing startup leveraged Preply to scale their operations and reduce manual work significantly.",
+            "Read how a fast-growing startup leveraged PrepBuddyAi to scale their operations and reduce manual work significantly.",
         date: "Dec 15, 2024",
         readTime: "6 min read",
         image: "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800",
@@ -133,7 +133,7 @@ export const blogPosts: BlogPost[] = [
         },
         content: {
             introduction:
-                "TechFlow, a rapidly growing SaaS startup, faced a common challenge: scaling operations without proportionally increasing headcount. In just six months of implementing Preply's automation solutions, they achieved a remarkable 300% increase in operational efficiency.",
+                "TechFlow, a rapidly growing SaaS startup, faced a common challenge: scaling operations without proportionally increasing headcount. In just six months of implementing PrepBuddyAi's automation solutions, they achieved a remarkable 300% increase in operational efficiency.",
             sections: [
                 {
                     title: "The Challenge",
@@ -143,12 +143,12 @@ export const blogPosts: BlogPost[] = [
                 {
                     title: "The Solution",
                     content:
-                        "TechFlow implemented Preply across three critical areas: customer onboarding, support ticket routing, and data synchronization between systems. They started with their most time-consuming process—customer onboarding—which previously required 12 manual steps and took 3-4 days to complete.",
+                        "TechFlow implemented PrepBuddyAi across three critical areas: customer onboarding, support ticket routing, and data synchronization between systems. They started with their most time-consuming process—customer onboarding—which previously required 12 manual steps and took 3-4 days to complete.",
                 },
                 {
                     title: "Implementation Process",
                     content:
-                        "The team began by mapping their existing workflows and identifying automation opportunities. Using Preply's visual workflow builder, they created automations that eliminated manual data entry, automated email communications, and triggered actions based on customer behavior. The entire implementation took just 6 weeks.",
+                        "The team began by mapping their existing workflows and identifying automation opportunities. Using PrepBuddyAi's visual workflow builder, they created automations that eliminated manual data entry, automated email communications, and triggered actions based on customer behavior. The entire implementation took just 6 weeks.",
                 },
                 {
                     title: "Results",
@@ -187,7 +187,7 @@ export const blogPosts: BlogPost[] = [
                 {
                     title: "Setting Up Your First AI Workflow",
                     content:
-                        "Begin by identifying a task that requires decision-making or pattern recognition. Common examples include email categorization, content moderation, or sentiment analysis. In Preply, navigate to the AI Automation section and select a template that matches your use case. The platform will guide you through configuring the AI model parameters.",
+                        "Begin by identifying a task that requires decision-making or pattern recognition. Common examples include email categorization, content moderation, or sentiment analysis. In PrepBuddyAi, navigate to the AI Automation section and select a template that matches your use case. The platform will guide you through configuring the AI model parameters.",
                 },
                 {
                     title: "Training Your AI Model",
@@ -264,7 +264,7 @@ export const blogPosts: BlogPost[] = [
         category: "Customer Stories",
         title: "Enterprise Success: Scaling with Automation",
         excerpt:
-            "Discover how Fortune 500 companies are using Preply to transform their business operations.",
+            "Discover how Fortune 500 companies are using PrepBuddyAi to transform their business operations.",
         date: "Dec 8, 2024",
         readTime: "5 min read",
         image: "https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800",
@@ -280,7 +280,7 @@ export const blogPosts: BlogPost[] = [
                 {
                     title: "Global Financial Services Leader",
                     content:
-                        "A major bank with operations in 50+ countries automated their customer onboarding process, reducing time-to-account from 7 days to 90 minutes. By integrating Preply with their existing systems, they maintained compliance requirements while dramatically improving customer experience. The automation handles over 10,000 new accounts daily, with a 99.8% accuracy rate.",
+                        "A major bank with operations in 50+ countries automated their customer onboarding process, reducing time-to-account from 7 days to 90 minutes. By integrating PrepBuddyAi with their existing systems, they maintained compliance requirements while dramatically improving customer experience. The automation handles over 10,000 new accounts daily, with a 99.8% accuracy rate.",
                 },
                 {
                     title: "Manufacturing Giant Transforms Supply Chain",

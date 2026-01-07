@@ -4,8 +4,8 @@ import { RefreshCw, XCircle, CheckCircle, Clock, Mail, AlertTriangle } from "luc
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Cancellation & Refund Policy - Preply",
-    description: "Cancellation and Refund Policy for Preply AI Interview Practice Platform.",
+    title: "Cancellation & Refund Policy - PrepBuddyAi",
+    description: "Cancellation and Refund Policy for PrepBuddyAi AI Interview Practice Platform.",
 };
 
 export default function RefundPolicyPage() {
@@ -30,7 +30,7 @@ export default function RefundPolicyPage() {
                             <div>
                                 <h3 className="font-semibold text-amber-900 mb-1">Important</h3>
                                 <p className="text-amber-800 text-sm">
-                                    Preply offers digital services (AI-powered interview practice). Please read this
+                                    PrepBuddyAi offers digital services (AI-powered interview practice). Please read this
                                     policy carefully before making a purchase.
                                 </p>
                             </div>
@@ -40,7 +40,7 @@ export default function RefundPolicyPage() {
                     <section className="mb-10">
                         <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Subscription Model</h2>
                         <p className="text-gray-600 leading-relaxed">
-                            Preply Pro subscriptions are sold as one-time payments for a fixed duration:
+                            PrepBuddyAi Pro subscriptions are sold as one-time payments for a fixed duration:
                         </p>
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
                             <div className="bg-gray-50 rounded-xl p-4 text-center">

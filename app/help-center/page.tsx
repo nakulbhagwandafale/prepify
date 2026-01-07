@@ -4,8 +4,8 @@ import HelpCenterContent from "./HelpCenterContent";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Help Center - Preply",
-  description: "Find answers to common questions about Preply's AI interview practice platform.",
+  title: "Help Center - PrepBuddyAi",
+  description: "Find answers to common questions about PrepBuddyAi's AI interview practice platform.",
 };
 
 // FAQ data - static, rendered on server
@@ -23,7 +23,7 @@ const faqCategories = [
         id: "gs-2",
         question: "What are the system requirements?",
         answer:
-          "Preply is a cloud-based platform that works on any modern web browser. We recommend using the latest version of Chrome, Firefox, Safari, or Edge for the best experience. For voice-based interviews, you'll need a working microphone. A stable internet connection is recommended for seamless AI interactions.",
+          "PrepBuddyAi is a cloud-based platform that works on any modern web browser. We recommend using the latest version of Chrome, Firefox, Safari, or Edge for the best experience. For voice-based interviews, you'll need a working microphone. A stable internet connection is recommended for seamless AI interactions.",
       },
       {
         id: "gs-3",
@@ -52,7 +52,7 @@ const faqCategories = [
         id: "if-2",
         question: "Can I practice with voice or text?",
         answer:
-          "Yes! Preply supports both voice and text-based interviews. Voice mode uses your microphone to capture spoken responses for a realistic interview experience. Text mode lets you type your answers if you prefer. You can switch between modes based on your preference.",
+          "Yes! PrepBuddyAi supports both voice and text-based interviews. Voice mode uses your microphone to capture spoken responses for a realistic interview experience. Text mode lets you type your answers if you prefer. You can switch between modes based on your preference.",
       },
       {
         id: "if-3",
@@ -73,9 +73,9 @@ const faqCategories = [
     questions: [
       {
         id: "ab-1",
-        question: "Is Preply free to use?",
+        question: "Is PrepBuddyAi free to use?",
         answer:
-          "Preply offers a free tier with limited interviews per month. For unlimited access, advanced features, and detailed analytics, you can upgrade to our Pro or Business plans. Check our Pricing page for current plans and features.",
+          "PrepBuddyAi offers a free tier with limited interviews per month. For unlimited access, advanced features, and detailed analytics, you can upgrade to our Pro or Business plans. Check our Pricing page for current plans and features.",
       },
       {
         id: "ab-2",

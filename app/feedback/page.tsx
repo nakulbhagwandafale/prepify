@@ -49,7 +49,7 @@ const feedbackOptions: FeedbackOption[] = [
         type: "compliment",
         icon: <Heart className="w-6 h-6" />,
         label: "Compliment",
-        description: "Tell us what you love about Preply",
+        description: "Tell us what you love about PrepBuddyAi",
         gradient: "from-pink-500 to-rose-500",
     },
     {
@@ -166,7 +166,7 @@ export default function FeedbackPage() {
                             </span>
                         </h1>
                         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                            Your feedback shapes the future of Preply. Share your thoughts, report issues, or tell us what you love.
+                            Your feedback shapes the future of PrepBuddyAi. Share your thoughts, report issues, or tell us what you love.
                         </p>
                     </motion.div>
                 </div>
@@ -189,7 +189,7 @@ export default function FeedbackPage() {
                                 Thank You! 🎉
                             </h2>
                             <p className="text-gray-600 mb-8 max-w-md mx-auto">
-                                Your feedback has been received. We truly appreciate you taking the time to help us improve Preply.
+                                Your feedback has been received. We truly appreciate you taking the time to help us improve PrepBuddyAi.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                 <Button

@@ -132,11 +132,11 @@ export default function Header() {
           <Link href="/" className="flex items-center space-x-3 hover:opacity-90 transition-opacity">
             <img
               src="/preply_icon.png"
-              alt="Preply"
+              alt="PrepBuddyAi"
               className="h-10 w-10 rounded-lg"
             />
             <span className="text-2xl font-bold bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">
-              Preply
+              PrepBuddyAi
             </span>
           </Link>
 

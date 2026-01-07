@@ -39,7 +39,7 @@ export const paymentConfig = {
     },
 
     currency: "INR",
-    companyName: "Preply",
+    companyName: "PrepBuddyAi",
 
     // Single Source of Truth for Pricing
     plans: {

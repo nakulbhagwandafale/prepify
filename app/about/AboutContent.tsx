@@ -65,7 +65,7 @@ export default function AboutContent() {
                                 </span>
                             </h1>
                             <p className="text-xl text-gray-600 leading-relaxed mb-8">
-                                Preply was born from countless sleepless nights preparing for interviews,
+                                PrepBuddyAi was born from countless sleepless nights preparing for interviews,
                                 the anxiety of not knowing what to expect, and a dream to make interview preparation
                                 accessible to everyone.
                             </p>
@@ -90,7 +90,7 @@ export default function AboutContent() {
                                     <div className="relative w-72 h-72 md:w-80 md:h-80 rounded-2xl overflow-hidden group">
                                         <Image
                                             src="/founder.jpg"
-                                            alt="Nakul Dafale - Founder of Preply"
+                                            alt="Nakul Dafale - Founder of PrepBuddyAi"
                                             fill
                                             className="object-cover transition-transform duration-500 group-hover:scale-105"
                                             priority
@@ -179,7 +179,7 @@ export default function AboutContent() {
                                         That&apos;s when the idea struck me – what if AI could be your personal interview coach?
                                         Available 24/7, never judging, always patient, and brutally honest with feedback.
                                         I combined my passion for building web applications with AI technology to create
-                                        <strong> Preply</strong> – a platform where anyone can practice interviews
+                                        <strong> PrepBuddyAi</strong> – a platform where anyone can practice interviews
                                         anytime, anywhere, and get real feedback to improve.
                                     </p>
                                 </div>
@@ -223,7 +223,7 @@ export default function AboutContent() {
                             {
                                 icon: <Users className="w-6 h-6" />,
                                 title: "For Everyone",
-                                description: "Whether you're a student, career switcher, or seasoned professional – Preply adapts to you.",
+                                description: "Whether you're a student, career switcher, or seasoned professional – PrepBuddyAi adapts to you.",
                                 color: "pink"
                             }
                         ].map((item, index) => (
@@ -243,7 +243,7 @@ export default function AboutContent() {
                 </div>
             </section>
 
-            {/* Why Preply Section */}
+            {/* Why PrepBuddyAi Section */}
             <section className="py-20 px-6">
                 <div className="max-w-6xl mx-auto">
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -253,7 +253,7 @@ export default function AboutContent() {
                                 Why Choose Us
                             </span>
                             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                                What Makes Preply Different
+                                What Makes PrepBuddyAi Different
                             </h2>
                             <p className="text-gray-600 leading-relaxed mb-8">
                                 This isn&apos;t just another interview prep tool. It&apos;s built by someone who
@@ -288,7 +288,7 @@ export default function AboutContent() {
                             <div className="bg-gradient-to-br from-violet-600 to-purple-600 rounded-3xl p-8 text-white">
                                 <Quote className="w-12 h-12 text-white/30 mb-6" />
                                 <p className="text-xl leading-relaxed mb-6">
-                                    &ldquo;I built Preply because I wish I had something like this when I was
+                                    &ldquo;I built PrepBuddyAi because I wish I had something like this when I was
                                     preparing for my placements. Every student deserves a fair chance to practice
                                     and improve, without barriers.&rdquo;
                                 </p>

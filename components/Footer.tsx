@@ -36,11 +36,11 @@ export default function Footer() {
             <div className="flex items-center space-x-2 mb-4">
               <img
                 src="/preply_icon.png"
-                alt="Preply"
+                alt="PrepBuddyAi"
                 className="h-8 w-8 rounded-lg"
               />
               <span className="text-xl font-bold bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">
-                Preply
+                PrepBuddyAi
               </span>
             </div>
             <p className="text-sm text-gray-600 leading-relaxed">
@@ -161,7 +161,7 @@ export default function Footer() {
 
         <div className="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-gray-600 mb-4 md:mb-0">
-            Copyright © Preply, Inc.
+            Copyright © PrepBuddyAi, Inc.
           </p>
           <div className="flex space-x-5">
             <a

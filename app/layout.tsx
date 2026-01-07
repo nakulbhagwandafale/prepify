@@ -14,7 +14,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'),
-  title: 'Preply - AI Interview Practice',
+  title: 'PrepBuddyAi - AI Interview Practice',
   description: 'Practice interviews with AI-powered feedback',
   openGraph: {
     images: [

@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     }
 
     return {
-        title: `${post.title} - Preply Blog`,
+        title: `${post.title} - PrepBuddyAi Blog`,
         description: post.excerpt,
         openGraph: {
             title: post.title,
@@ -161,7 +161,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
                                 </h3>
                                 <p className="text-sm text-blue-600 mb-3">{post.author.role}</p>
                                 <p className="text-gray-600 leading-relaxed">
-                                    {post.author.name} is a passionate {post.author.role.toLowerCase()} at Preply,
+                                    {post.author.name} is a passionate {post.author.role.toLowerCase()} at PrepBuddyAi,
                                     dedicated to helping businesses transform their operations through intelligent automation.
                                     With years of experience in the industry, they bring valuable insights and practical
                                     expertise to every article.

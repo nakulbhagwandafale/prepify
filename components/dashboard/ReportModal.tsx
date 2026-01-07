@@ -361,7 +361,7 @@ function ReportContent({
             {/* Footer */}
             <div className="text-center pt-6 mt-8 border-t-2 border-gray-200">
                 <p className="text-sm text-gray-400 font-medium">
-                    Preply Interview Preparation Platform
+                    PrepBuddyAi Interview Preparation Platform
                 </p>
             </div>
         </div>

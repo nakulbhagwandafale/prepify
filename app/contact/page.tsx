@@ -5,8 +5,8 @@ import { Mail, MessageSquare, Clock } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Us - Preply",
-  description: "Get in touch with the Preply team. We'd love to hear from you.",
+  title: "Contact Us - PrepBuddyAi",
+  description: "Get in touch with the PrepBuddyAi team. We'd love to hear from you.",
 };
 
 // Server Component for faster initial render
@@ -33,7 +33,7 @@ export default function Contact() {
                   Get in Touch
                 </h2>
                 <p className="text-gray-600 leading-relaxed">
-                  Have questions about Preply? Our team is here to help. Send us
+                  Have questions about PrepBuddyAi? Our team is here to help. Send us
                   a message and we&apos;ll respond as soon as possible.
                 </p>
               </div>

@@ -4,8 +4,8 @@ import { FileText, Shield, CreditCard, RefreshCw, HelpCircle } from "lucide-reac
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Terms and Conditions - Preply",
-    description: "Terms and Conditions for using Preply AI Interview Practice Platform.",
+    title: "Terms and Conditions - PrepBuddyAi",
+    description: "Terms and Conditions for using PrepBuddyAi AI Interview Practice Platform.",
 };
 
 export default function TermsPage() {
@@ -26,7 +26,7 @@ export default function TermsPage() {
                     <section className="mb-10">
                         <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Introduction</h2>
                         <p className="text-gray-600 leading-relaxed">
-                            Welcome to Preply, an AI-powered interview practice platform. By accessing or using our
+                            Welcome to PrepBuddyAi, an AI-powered interview practice platform. By accessing or using our
                             website and services, you agree to be bound by these Terms and Conditions. Please read
                             them carefully before using our platform.
                         </p>
@@ -35,7 +35,7 @@ export default function TermsPage() {
                     <section className="mb-10">
                         <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Services Offered</h2>
                         <p className="text-gray-600 leading-relaxed mb-4">
-                            Preply provides AI-powered mock interview practice services, including:
+                            PrepBuddyAi provides AI-powered mock interview practice services, including:
                         </p>
                         <ul className="list-disc pl-6 text-gray-600 space-y-2">
                             <li>AI-generated interview questions based on your resume and preferences</li>
@@ -103,8 +103,8 @@ export default function TermsPage() {
                     <section className="mb-10">
                         <h2 className="text-2xl font-bold text-gray-900 mb-4">7. Intellectual Property</h2>
                         <p className="text-gray-600 leading-relaxed">
-                            All content, features, and functionality of Preply, including but not limited to text,
-                            graphics, logos, and software, are the exclusive property of Preply and are protected
+                            All content, features, and functionality of PrepBuddyAi, including but not limited to text,
+                            graphics, logos, and software, are the exclusive property of PrepBuddyAi and are protected
                             by copyright, trademark, and other intellectual property laws.
                         </p>
                     </section>
@@ -112,7 +112,7 @@ export default function TermsPage() {
                     <section className="mb-10">
                         <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Disclaimer</h2>
                         <p className="text-gray-600 leading-relaxed">
-                            Preply is an AI-powered practice tool and does not guarantee job placement or interview
+                            PrepBuddyAi is an AI-powered practice tool and does not guarantee job placement or interview
                             success. The feedback provided by our AI is for educational purposes only and should not
                             be considered professional career advice. We are not responsible for any decisions made
                             based on our AI&apos;s feedback.
@@ -122,7 +122,7 @@ export default function TermsPage() {
                     <section className="mb-10">
                         <h2 className="text-2xl font-bold text-gray-900 mb-4">9. Limitation of Liability</h2>
                         <p className="text-gray-600 leading-relaxed">
-                            To the maximum extent permitted by law, Preply shall not be liable for any indirect,
+                            To the maximum extent permitted by law, PrepBuddyAi shall not be liable for any indirect,
                             incidental, special, consequential, or punitive damages arising from your use of our
                             services.
                         </p>
