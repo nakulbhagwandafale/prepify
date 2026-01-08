@@ -14,10 +14,7 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // Prefetch the dashboard/setup page for instant navigation
-  useEffect(() => {
-    router.prefetch(redirectTo);
-  }, [router, redirectTo]);
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,7 +37,8 @@ export default function LoginPage() {
       }
 
       if (data.session) {
-        // Redirect immediately
+        // Refresh router to ensure we have fresh server state (auth cookies)
+        router.refresh();
         router.push(redirectTo);
       } else {
         setError("Login failed. Please try again.");
