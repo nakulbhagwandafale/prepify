@@ -44,16 +44,12 @@ export default function RefundPolicyPage() {
                         </p>
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
                             <div className="bg-gray-50 rounded-xl p-4 text-center">
-                                <p className="font-bold text-gray-900">₹99</p>
+                                <p className="font-bold text-gray-900">₹799</p>
                                 <p className="text-sm text-gray-500">1 Month</p>
                             </div>
                             <div className="bg-gray-50 rounded-xl p-4 text-center">
-                                <p className="font-bold text-gray-900">₹399</p>
-                                <p className="text-sm text-gray-500">6 Months</p>
-                            </div>
-                            <div className="bg-violet-50 rounded-xl p-4 text-center border-2 border-violet-200">
-                                <p className="font-bold text-violet-700">₹999</p>
-                                <p className="text-sm text-violet-600">12 Months</p>
+                                <p className="font-bold text-gray-900">₹7299</p>
+                                <p className="text-sm text-gray-500">12 Months</p>
                             </div>
                         </div>
                         <p className="text-gray-600 leading-relaxed mt-4">
