@@ -477,10 +477,10 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/signup"
+              href={buttonConfig.href}
               className="group inline-flex items-center justify-center gap-2 px-10 py-5 bg-white text-violet-600 font-bold text-lg rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
             >
-              Start Free Trial
+              {buttonConfig.text}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
