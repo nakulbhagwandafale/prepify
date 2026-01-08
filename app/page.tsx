@@ -21,6 +21,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { FAQSection, WatchDemoButton } from "./_components/HomeClientParts";
 import { useSubscription } from "@/app/context/SubscriptionContext";
+import PricingSection from "@/components/PricingSection";
 
 export default function Home() {
   const faqs = [
@@ -373,104 +374,8 @@ export default function Home() {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-24 bg-gradient-to-b from-violet-50/50 via-white to-white scroll-mt-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 bg-violet-100 text-violet-700 text-sm font-medium rounded-full mb-4">
-              Simple Pricing
-            </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Choose Your{" "}
-              <span className="bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">
-                Perfect Plan
-              </span>
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Start free and upgrade as you grow. All plans include AI-powered feedback and
-              progress tracking.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {/* Free Plan */}
-            <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-200 hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">Free</h3>
-              <p className="text-gray-600 mb-6">Perfect for getting started</p>
-              <div className="mb-6">
-                <span className="text-5xl font-bold text-gray-900">₹0</span>
-                <span className="text-gray-500">/month</span>
-              </div>
-              <ul className="space-y-4 mb-8">
-                {["3 interviews per month", "Basic AI feedback", "Email support", "Progress dashboard"].map((feature, i) => (
-                  <li key={i} className="flex items-center gap-3 text-gray-700">
-                    <Check className="w-5 h-5 text-green-500 flex-shrink-0" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="/signup"
-                className="block w-full py-4 text-center font-semibold text-violet-600 border-2 border-violet-200 rounded-2xl hover:bg-violet-50 hover:border-violet-300 transition-all duration-300"
-              >
-                Get Started Free
-              </Link>
-            </div>
-
-            {/* Pro Plan */}
-            <div className="relative bg-gradient-to-br from-violet-600 to-purple-600 rounded-3xl p-8 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                <span className="bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 px-4 py-1.5 rounded-full text-sm font-bold shadow-lg">
-                  Most Popular
-                </span>
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-2">Pro</h3>
-              <p className="text-white/80 mb-6">Best for serious job seekers</p>
-              <div className="mb-6">
-                <span className="text-5xl font-bold text-white">₹499</span>
-                <span className="text-white/70">/month</span>
-              </div>
-              <ul className="space-y-4 mb-8">
-                {["Unlimited interviews", "Advanced AI analysis", "Priority support", "Detailed analytics", "Resume optimization tips"].map((feature, i) => (
-                  <li key={i} className="flex items-center gap-3 text-white">
-                    <Check className="w-5 h-5 text-green-300 flex-shrink-0" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="/signup"
-                className="block w-full py-4 text-center font-bold text-violet-600 bg-white rounded-2xl hover:bg-gray-100 transition-all duration-300 shadow-lg"
-              >
-                Start Pro Trial
-              </Link>
-            </div>
-
-            {/* Business Plan */}
-            <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-200 hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">Business</h3>
-              <p className="text-gray-600 mb-6">For teams & organizations</p>
-              <div className="mb-6">
-                <span className="text-5xl font-bold text-gray-900">₹999</span>
-                <span className="text-gray-500">/month</span>
-              </div>
-              <ul className="space-y-4 mb-8">
-                {["Everything in Pro", "Team management", "Custom question banks", "API access", "Dedicated support"].map((feature, i) => (
-                  <li key={i} className="flex items-center gap-3 text-gray-700">
-                    <Check className="w-5 h-5 text-green-500 flex-shrink-0" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="/contact"
-                className="block w-full py-4 text-center font-semibold text-violet-600 border-2 border-violet-200 rounded-2xl hover:bg-violet-50 hover:border-violet-300 transition-all duration-300"
-              >
-                Contact Sales
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Pricing Section */}
+      <PricingSection className="bg-gradient-to-b from-violet-50/50 via-white to-white scroll-mt-20" />
 
       {/* Testimonials */}
       <section className="py-24 bg-white">
