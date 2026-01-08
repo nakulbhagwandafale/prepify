@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import {
   Mic,
   Brain,
@@ -19,9 +20,18 @@ import {
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { FAQSection, WatchDemoButton } from "./_components/HomeClientParts";
+import { WatchDemoButton } from "./_components/HomeClientParts";
 import { useSubscription } from "@/app/context/SubscriptionContext";
-import PricingSection from "@/components/PricingSection";
+
+const PricingSection = dynamic(() => import("@/components/PricingSection"), {
+  loading: () => <div className="py-24 flex justify-center"><div className="animate-pulse text-gray-400">Loading pricing...</div></div>,
+  ssr: true,
+});
+
+const FAQSection = dynamic(
+  () => import("./_components/HomeClientParts").then((mod) => ({ default: mod.FAQSection })),
+  { loading: () => <div className="py-24 flex justify-center"><div className="animate-pulse text-gray-400">Loading FAQ...</div></div>, ssr: true }
+);
 
 export default function Home() {
   const faqs = [

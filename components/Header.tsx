@@ -146,69 +146,78 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center space-x-3">
-            {mounted && !loading && (
-              <>
-                {user ? (
-                  <div className="relative" ref={dropdownRef}>
-                    {/* Profile Avatar Button */}
-                    <button
-                      onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                      className="hidden md:flex items-center gap-2 p-1 rounded-full hover:bg-gray-100 transition-colors"
-                    >
-                      <div className="w-10 h-10 bg-gradient-to-br from-violet-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md">
-                        {getInitial()}
-                      </div>
-                      <ChevronDown className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
-                    </button>
-
-                    {/* Mobile Profile Icon (Just the avatar, no dropdown, opens menu presumably or separate mobile logic if needed, but for now we keep it simple or integrate into mobile menu) */}
-                    {/* For mobile, we might want the menu button to handle everything. Let's hide this profile dropdown trigger on mobile and put profile actions in hamburger menu. */}
-
-
-                    {/* Desktop Dropdown Menu */}
-                    {isDropdownOpen && (
-                      <div className="hidden md:block absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-gray-200 py-2 animate-in fade-in zoom-in-95 duration-200">
-                        <div className="px-4 py-3 border-b border-gray-100">
-                          <p className="text-sm font-medium text-gray-900 truncate">{user.email}</p>
-                          <p className="text-xs text-gray-500">Logged in</p>
-                        </div>
-                        <div className="py-1">
-                          <Link
-                            href="/dashboard"
-                            onClick={() => setIsDropdownOpen(false)}
-                            className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-violet-50 hover:text-violet-600 transition-colors"
-                          >
-                            <LayoutDashboard className="w-4 h-4" />
-                            Dashboard
-                          </Link>
-                          <button
-                            onClick={handleLogout}
-                            className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600 transition-colors"
-                          >
-                            <LogOut className="w-4 h-4" />
-                            Logout
-                          </button>
-                        </div>
-                      </div>
-                    )}
+            {/* Desktop Auth Buttons - Always render, show based on auth state */}
+            {!mounted || loading ? (
+              // SSR/Loading state - show Sign Up/Login as default
+              <div className="hidden md:flex items-center space-x-3">
+                <Link
+                  href="/signup"
+                  className="px-5 py-2 text-sm font-medium text-white bg-violet-600 rounded-lg hover:bg-violet-700 hover:shadow-md transition-all duration-200"
+                >
+                  Sign Up
+                </Link>
+                <Link
+                  href="/login"
+                  className="px-5 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-all duration-200"
+                >
+                  Login
+                </Link>
+              </div>
+            ) : user ? (
+              <div className="relative" ref={dropdownRef}>
+                {/* Profile Avatar Button */}
+                <button
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  className="hidden md:flex items-center gap-2 p-1 rounded-full hover:bg-gray-100 transition-colors"
+                >
+                  <div className="w-10 h-10 bg-gradient-to-br from-violet-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md">
+                    {getInitial()}
                   </div>
-                ) : (
-                  <div className="hidden md:flex items-center space-x-3">
-                    <Link
-                      href="/signup"
-                      className="px-5 py-2 text-sm font-medium text-white bg-violet-600 rounded-lg hover:bg-violet-700 hover:shadow-md transition-all duration-200"
-                    >
-                      Sign Up
-                    </Link>
-                    <Link
-                      href="/login"
-                      className="px-5 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-all duration-200"
-                    >
-                      Login
-                    </Link>
+                  <ChevronDown className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                </button>
+
+                {/* Desktop Dropdown Menu */}
+                {isDropdownOpen && (
+                  <div className="hidden md:block absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-gray-200 py-2 animate-in fade-in zoom-in-95 duration-200">
+                    <div className="px-4 py-3 border-b border-gray-100">
+                      <p className="text-sm font-medium text-gray-900 truncate">{user.email}</p>
+                      <p className="text-xs text-gray-500">Logged in</p>
+                    </div>
+                    <div className="py-1">
+                      <Link
+                        href="/dashboard"
+                        onClick={() => setIsDropdownOpen(false)}
+                        className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-violet-50 hover:text-violet-600 transition-colors"
+                      >
+                        <LayoutDashboard className="w-4 h-4" />
+                        Dashboard
+                      </Link>
+                      <button
+                        onClick={handleLogout}
+                        className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600 transition-colors"
+                      >
+                        <LogOut className="w-4 h-4" />
+                        Logout
+                      </button>
+                    </div>
                   </div>
                 )}
-              </>
+              </div>
+            ) : (
+              <div className="hidden md:flex items-center space-x-3">
+                <Link
+                  href="/signup"
+                  className="px-5 py-2 text-sm font-medium text-white bg-violet-600 rounded-lg hover:bg-violet-700 hover:shadow-md transition-all duration-200"
+                >
+                  Sign Up
+                </Link>
+                <Link
+                  href="/login"
+                  className="px-5 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-all duration-200"
+                >
+                  Login
+                </Link>
+              </div>
             )}
 
             {/* Mobile Menu Button */}
