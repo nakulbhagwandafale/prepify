@@ -22,6 +22,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { WatchDemoButton } from "./_components/HomeClientParts";
 import { useSubscription } from "@/app/context/SubscriptionContext";
+import { useAuth } from "@/app/context/AuthContext";
 
 const PricingSection = dynamic(() => import("@/components/PricingSection"), {
   loading: () => <div className="py-24 flex justify-center"><div className="animate-pulse text-gray-400">Loading pricing...</div></div>,
@@ -68,6 +69,7 @@ export default function Home() {
   ];
 
   const { isPro, interviewsTaken, loading: subLoading } = useSubscription();
+  const { user } = useAuth();
 
   const getHeroButtonConfig = () => {
     if (subLoading) return { text: "Start Free Interview", href: "/interview-setup" };
@@ -493,12 +495,21 @@ export default function Home() {
               {buttonConfig.text}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
-            <Link
-              href="/login"
-              className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-white/10 text-white font-semibold text-lg rounded-2xl border-2 border-white/30 hover:bg-white/20 transition-all duration-300"
-            >
-              Sign In
-            </Link>
+            {user ? (
+              <button
+                disabled
+                className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-white/5 text-white/50 font-semibold text-lg rounded-2xl border-2 border-white/10 cursor-not-allowed transition-all duration-300"
+              >
+                Sign In
+              </button>
+            ) : (
+              <Link
+                href="/login"
+                className="inline-flex items-center justify-center gap-2 px-10 py-5 bg-white/10 text-white font-semibold text-lg rounded-2xl border-2 border-white/30 hover:bg-white/20 transition-all duration-300"
+              >
+                Sign In
+              </Link>
+            )}
           </div>
         </div>
       </section>
