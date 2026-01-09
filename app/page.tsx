@@ -29,6 +29,11 @@ const PricingSection = dynamic(() => import("@/components/PricingSection"), {
   ssr: true,
 });
 
+const TestimonialCarousel = dynamic(() => import("@/components/TestimonialCarousel"), {
+  loading: () => <div className="py-24 flex justify-center"><div className="animate-pulse text-gray-400">Loading stories...</div></div>,
+  ssr: true,
+});
+
 const FAQSection = dynamic(
   () => import("./_components/HomeClientParts").then((mod) => ({ default: mod.FAQSection })),
   { loading: () => <div className="py-24 flex justify-center"><div className="animate-pulse text-gray-400">Loading FAQ...</div></div>, ssr: true }
@@ -404,36 +409,7 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { name: "Priya Sharma", role: "Software Engineer @ Google", quote: "The AI feedback was incredibly detailed. I improved my interview skills significantly and landed my dream job!", avatar: "PS" },
-              { name: "Rahul Verma", role: "Product Manager @ Microsoft", quote: "Practicing with realistic questions helped me feel confident. The progress tracking kept me motivated throughout.", avatar: "RV" },
-              { name: "Ananya Patel", role: "Data Scientist @ Amazon", quote: "Best interview prep platform I have used. The personalized questions based on my resume were exactly what I needed.", avatar: "AP" },
-            ].map((testimonial, i) => (
-              <div
-                key={i}
-                className="bg-gradient-to-br from-violet-50/50 to-purple-50/50 rounded-3xl p-8 border border-violet-100/50 hover:shadow-xl hover:-translate-y-2 transition-all duration-500"
-              >
-                <div className="flex gap-1 mb-6">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <Star key={star} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                  ))}
-                </div>
-                <p className="text-gray-700 leading-relaxed mb-6 italic">
-                  &quot;{testimonial.quote}&quot;
-                </p>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-violet-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold">
-                    {testimonial.avatar}
-                  </div>
-                  <div>
-                    <p className="font-bold text-gray-900">{testimonial.name}</p>
-                    <p className="text-sm text-gray-600">{testimonial.role}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <TestimonialCarousel />
         </div>
       </section>
 
