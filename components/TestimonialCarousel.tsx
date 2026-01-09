@@ -89,7 +89,7 @@ export default function TestimonialCarousel() {
     // Strict truncation: 50 characters + 9 dots
     const truncateText = (text: string, maxLength: number) => {
         if (text.length <= maxLength) return text;
-        return text.slice(0, maxLength) + ".........";
+        return text.slice(0, maxLength) + "....";
     };
 
     return (
@@ -145,7 +145,7 @@ export default function TestimonialCarousel() {
                                     {/* Bottom Section: Description (Feedback) */}
                                     {/* Strict overflow hidden to ensure it never breaks layout */}
                                     <div className="text-gray-600 leading-relaxed text-sm flex-grow overflow-hidden">
-                                        {truncateText(testimonial.message.replace(/^\[.*?\]\s*/, ""), 50)}
+                                        {truncateText(testimonial.message.replace(/^\[.*?\]\s*/, ""), 100)}
                                     </div>
 
                                     {/* Footer / Action Indicator */}
