@@ -4,11 +4,29 @@ import { Facebook, Twitter, Instagram } from "lucide-react";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import { useAuth } from "@/app/context/AuthContext";
+import { useSubscription } from "@/app/context/SubscriptionContext";
 
 export default function Footer() {
   const router = useRouter();
   const pathname = usePathname();
   const { user } = useAuth();
+  const { isPro, interviewsTaken, loading: subLoading } = useSubscription();
+
+  const getButtonConfig = () => {
+    if (subLoading) return { text: "Start Free Interview", href: "/interview-setup" };
+
+    if (!isPro && interviewsTaken > 0) {
+      return { text: "Get the Paid Version", href: "/pricing" };
+    }
+
+    if (isPro) {
+      return { text: "Start Interview", href: "/interview-setup" };
+    }
+
+    return { text: "Start Free Interview", href: "/interview-setup" };
+  };
+
+  const buttonConfig = getButtonConfig();
 
   const handleSectionClick = (sectionId: string) => {
     if (pathname === "/") {
@@ -151,10 +169,10 @@ export default function Footer() {
         <div className="pt-8 mt-8 border-t border-gray-200">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <Link
-              href="/signup"
-              className="inline-flex items-center justify-center px-8 py-3 text-sm font-semibold text-white bg-violet-600 rounded-lg hover:bg-violet-700 hover:shadow-lg transition-all duration-200"
+              href={buttonConfig.href}
+              className="inline-flex items-center justify-center px-8 py-3 text-sm font-semibold text-white bg-gradient-to-r from-violet-600 to-purple-600 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
             >
-              Get Started Free
+              {buttonConfig.text}
             </Link>
           </div>
         </div>
