@@ -5,6 +5,7 @@ import { InterviewProvider } from './context/InterviewContext';
 import { AuthProvider } from './context/AuthContext';
 import { SubscriptionProvider } from './context/SubscriptionContext';
 import { MotionProvider } from '@/components/MotionProvider';
+import { Toaster } from 'sonner';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -62,6 +63,7 @@ export default function RootLayout({
             <InterviewProvider>
               <MotionProvider>
                 {children}
+                <Toaster position="top-center" richColors />
               </MotionProvider>
             </InterviewProvider>
           </SubscriptionProvider>

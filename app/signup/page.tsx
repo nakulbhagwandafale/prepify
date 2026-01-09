@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -30,6 +31,34 @@ export default function SignupPage() {
     setLoading(true);
 
     try {
+      // 1. Check if email already exists
+      const checkRes = await fetch("/api/auth/check-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const checkData = await checkRes.json();
+
+      if (checkData.error || checkData.debug_error) {
+        const errMsg = checkData.error || checkData.debug_error;
+        console.error("Check-email API error:", errMsg);
+        toast.error("Unable to verify email. Please try again.");
+        setLoading(false);
+        return;
+      }
+
+      if (checkData.exists) {
+        toast.info("This email is already registered. Redirecting to login...", {
+          duration: 4000,
+        });
+        setTimeout(() => {
+          router.push("/login");
+        }, 4000);
+        return;
+      }
+
+      // 2. Proceed with signup if email is new
       const { supabase } = await import("@/lib/supabase");
       const { data, error: signUpError } = await supabase.auth.signUp({
         email,
@@ -43,6 +72,18 @@ export default function SignupPage() {
       });
 
       if (signUpError) {
+        // Redundant check, but kept as failsafe
+        if (signUpError.message.toLowerCase().includes("already registered") ||
+          signUpError.message.toLowerCase().includes("already exists")) {
+          toast.info("This email is already registered. Redirecting to login...", {
+            duration: 4000,
+          });
+          setTimeout(() => {
+            router.push("/login");
+          }, 4000);
+          return;
+        }
+
         setError(signUpError.message);
         setLoading(false);
         return;
@@ -58,6 +99,7 @@ export default function SignupPage() {
         setLoading(false);
       }
     } catch (err) {
+      console.error("Signup error:", err);
       setError("An unexpected error occurred. Please try again.");
       setLoading(false);
     }
