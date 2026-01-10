@@ -20,6 +20,7 @@ export default function InterviewSessionPage() {
     // Refs for Speech APIs
     const recognitionRef = useRef<any>(null);
     const synthRef = useRef<SpeechSynthesis | null>(null);
+    const shouldListeningRef = useRef(false); // Track if we INTEND to be listening
 
     // Initial Setup & Redirect Safety
     useEffect(() => {
@@ -35,48 +36,80 @@ export default function InterviewSessionPage() {
         // Initialize Speech Recognition
         if (typeof window !== 'undefined') {
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
             if (SpeechRecognition) {
-                recognitionRef.current = new SpeechRecognition();
-                recognitionRef.current.continuous = true;
-                recognitionRef.current.interimResults = true;
-                recognitionRef.current.lang = 'en-US';
+                // Check if browser is compatible
+                try {
+                    recognitionRef.current = new SpeechRecognition();
+                    recognitionRef.current.continuous = true;
+                    // Note: interimResults = true can sometimes cause mobile browsers to choke if results come too fast,
+                    // but it's needed for the "live" feel. We'll keep it but handle errors gracefully.
+                    recognitionRef.current.interimResults = true;
+                    recognitionRef.current.lang = 'en-US';
 
-                recognitionRef.current.onresult = (event: SpeechRecognitionEvent) => {
-                    let interimTranscript = '';
-                    let finalTranscript = '';
+                    recognitionRef.current.onresult = (event: SpeechRecognitionEvent) => {
+                        let interimTranscript = '';
+                        let finalTranscript = '';
 
-                    for (let i = event.resultIndex; i < event.results.length; ++i) {
-                        if (event.results[i].isFinal) {
-                            finalTranscript += event.results[i][0].transcript;
-                        } else {
-                            interimTranscript += event.results[i][0].transcript;
+                        for (let i = event.resultIndex; i < event.results.length; ++i) {
+                            if (event.results[i].isFinal) {
+                                finalTranscript += event.results[i][0].transcript;
+                            } else {
+                                interimTranscript += event.results[i][0].transcript;
+                            }
                         }
-                    }
 
-                    // Appending to existing transcript state wasn't working well with live updates, 
-                    // so we append final results to previous value and show interim live.
-                    // Simplified strategy: Update input with what we hear.
-                    // Better: User edits text manually or speech appends. 
-                    // We will just append the *new* final transcript to the state.
-                    if (finalTranscript) {
-                        setTranscript(prev => {
-                            const newText = prev ? `${prev} ${finalTranscript}` : finalTranscript;
-                            return newText;
-                        });
-                    }
-                };
+                        if (finalTranscript) {
+                            setTranscript(prev => {
+                                const newText = prev ? `${prev} ${finalTranscript}` : finalTranscript;
+                                return newText;
+                            });
+                        }
+                    };
 
-                recognitionRef.current.onerror = (event: SpeechRecognitionErrorEvent) => {
-                    console.error("Speech recognition error", event.error);
-                    setIsListening(false);
-                    // toast.error("Microphone error. Please check permissions."); // Optional: Add toast here
-                };
+                    recognitionRef.current.onerror = (event: SpeechRecognitionErrorEvent) => {
+                        console.error("Speech recognition error", event.error);
 
-                recognitionRef.current.onend = () => {
-                    // Auto-restart if it stops but we think it's listening (unless explicitly stopped)
-                    // For now, simpler to just set state to false.
-                    setIsListening(false);
-                };
+                        // Handle specific errors
+                        if (event.error === 'not-allowed') {
+                            setIsListening(false);
+                            shouldListeningRef.current = false;
+                            alert("Microphone access denied. Please allow microphone access in your browser settings.");
+                        } else if (event.error === 'no-speech') {
+                            // Ignore no-speech errors, just keep listening if we intended to
+                            // This often happens on mobile if silence is detected
+                        } else if (event.error === 'network') {
+                            setIsListening(false);
+                            shouldListeningRef.current = false;
+                            alert("Network error occurred. Voice recognition requires an internet connection.");
+                        } else {
+                            // For other errors, we might want to stop to prevent infinite loops
+                            // But usually, we try to keep going if it's just a hiccup
+                            if (event.error === 'aborted') {
+                                // User stopped it or system stopped it
+                            }
+                        }
+                    };
+
+                    recognitionRef.current.onend = () => {
+                        // Crucial for mobile: Browser stops recognition automatically after a while or silence.
+                        // We restart it if the user didn't explicitly stop it.
+                        if (shouldListeningRef.current) {
+                            try {
+                                recognitionRef.current.start();
+                                setIsListening(true);
+                            } catch (e) {
+                                console.error("Failed to restart recognition", e);
+                                setIsListening(false);
+                                shouldListeningRef.current = false;
+                            }
+                        } else {
+                            setIsListening(false);
+                        }
+                    };
+                } catch (e) {
+                    console.error("Browser doesn't support SpeechRecognition correctly", e);
+                }
             }
         }
 
@@ -161,21 +194,34 @@ export default function InterviewSessionPage() {
         // Stop speaking if listening starts
         stopSpeaking();
 
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRecognition) {
+            alert("Speech recognition is not supported in this browser. Please use Google Chrome or Edge.");
+            return;
+        }
+
+        shouldListeningRef.current = true; // Set intent to listen
+
         if (recognitionRef.current) {
             try {
                 recognitionRef.current.start();
                 setIsListening(true);
             } catch (e) {
                 console.error("Failed to start recognition", e);
+                // Sometimes it fails if already started, just ensure state is correct
+                setIsListening(true);
             }
-        } else {
-            alert("Speech recognition is not supported in this browser.");
         }
     };
 
     const stopListening = () => {
+        shouldListeningRef.current = false; // Set intent to stop
         if (recognitionRef.current) {
-            recognitionRef.current.stop();
+            try {
+                recognitionRef.current.stop();
+            } catch (e) {
+                // Ignore if already stopped
+            }
         }
         setIsListening(false);
     };
