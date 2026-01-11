@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { m as motion } from "framer-motion";
 import { Mic, Volume2, Keyboard, Loader2, StopCircle, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useInterview } from "@/app/context/InterviewContext";
@@ -11,10 +12,12 @@ import { useRouter } from "next/navigation";
 
 export default function InterviewSessionPage() {
     const router = useRouter();
+    const { toast } = useToast();
     const { questions, setAnswers, answers, currentQuestionIndex, setCurrentQuestionIndex, timeLeft, setTimeLeft, isLoaded } = useInterview();
     // const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); // REMOVED: Using context for persistence
     const [isListening, setIsListening] = useState(false);
     const [transcript, setTranscript] = useState("");
+    const [interimTranscript, setInterimTranscript] = useState("");
     const [isSpeaking, setIsSpeaking] = useState(false);
 
     // Refs for Speech APIs
@@ -48,23 +51,24 @@ export default function InterviewSessionPage() {
                     recognitionRef.current.lang = 'en-US';
 
                     recognitionRef.current.onresult = (event: SpeechRecognitionEvent) => {
-                        let interimTranscript = '';
-                        let finalTranscript = '';
+                        let final = '';
+                        let interim = '';
 
                         for (let i = event.resultIndex; i < event.results.length; ++i) {
                             if (event.results[i].isFinal) {
-                                finalTranscript += event.results[i][0].transcript;
+                                final += event.results[i][0].transcript;
                             } else {
-                                interimTranscript += event.results[i][0].transcript;
+                                interim += event.results[i][0].transcript;
                             }
                         }
 
-                        if (finalTranscript) {
+                        if (final) {
                             setTranscript(prev => {
-                                const newText = prev ? `${prev} ${finalTranscript}` : finalTranscript;
+                                const newText = prev ? `${prev} ${final}` : final;
                                 return newText;
                             });
                         }
+                        setInterimTranscript(interim);
                     };
 
                     recognitionRef.current.onerror = (event: SpeechRecognitionErrorEvent) => {
@@ -74,14 +78,22 @@ export default function InterviewSessionPage() {
                         if (event.error === 'not-allowed') {
                             setIsListening(false);
                             shouldListeningRef.current = false;
-                            alert("Microphone access denied. Please allow microphone access in your browser settings.");
+                            toast({
+                                variant: "destructive",
+                                title: "Microphone Access Denied",
+                                description: "Please allow microphone access in your browser settings to use voice input."
+                            });
                         } else if (event.error === 'no-speech') {
                             // Ignore no-speech errors, just keep listening if we intended to
                             // This often happens on mobile if silence is detected
                         } else if (event.error === 'network') {
                             setIsListening(false);
                             shouldListeningRef.current = false;
-                            alert("Network error occurred. Voice recognition requires an internet connection.");
+                            toast({
+                                variant: "destructive",
+                                title: "Network Error",
+                                description: "Voice recognition requires an active internet connection."
+                            });
                         } else {
                             // For other errors, we might want to stop to prevent infinite loops
                             // But usually, we try to keep going if it's just a hiccup
@@ -105,6 +117,7 @@ export default function InterviewSessionPage() {
                             }
                         } else {
                             setIsListening(false);
+                            setInterimTranscript(""); // Clear interim on stop
                         }
                     };
                 } catch (e) {
@@ -196,7 +209,11 @@ export default function InterviewSessionPage() {
 
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (!SpeechRecognition) {
-            alert("Speech recognition is not supported in this browser. Please use Google Chrome or Edge.");
+            toast({
+                variant: "destructive",
+                title: "Not Supported",
+                description: "Speech recognition is not supported in this browser. Please use Chrome, Edge, or Safari."
+            });
             return;
         }
 
@@ -224,15 +241,17 @@ export default function InterviewSessionPage() {
             }
         }
         setIsListening(false);
+        setInterimTranscript("");
     };
 
     const handleSubmitAnswer = () => {
         if (!transcript.trim()) {
-            // Ideally we'd use a toast here
-            // alert("Please provide an answer before moving forward."); // Removed alert to be less intrusive, maybe just don't proceed?
-            // Actually, proceeding with empty answer might be valid (skip). But let's prompt.
-            const confirmSkip = window.confirm("You haven't provided an answer. Do you want to skip this question?");
-            if (!confirmSkip) return;
+            toast({
+                title: "No Answer Provided",
+                description: "Please speak or type your answer before continuing.",
+                variant: "default"
+            });
+            return;
         }
 
         // Save answer
@@ -252,6 +271,7 @@ export default function InterviewSessionPage() {
         if (currentQuestionIndex < questions.length - 1) {
             setCurrentQuestionIndex(prev => prev + 1);
             setTranscript("");
+            setInterimTranscript("");
         } else {
             router.push("/result-page");
         }
@@ -392,12 +412,15 @@ export default function InterviewSessionPage() {
                         </div>
                     </div>
 
-                    <textarea
-                        value={transcript}
-                        onChange={(e) => setTranscript(e.target.value)}
-                        placeholder={isListening ? "Listening..." : "Type your answer here..."}
-                        className="w-full bg-gray-50 border border-gray-200 rounded-xl p-4 min-h-[120px] text-gray-600 text-base leading-relaxed focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all resize-none"
-                    />
+                    <div className="relative w-full">
+                        <textarea
+                            value={transcript + (isListening ? (transcript ? " " : "") + interimTranscript : "")}
+                            onChange={(e) => setTranscript(e.target.value)}
+                            placeholder={isListening ? "Listening..." : "Type your answer here..."}
+                            className="w-full bg-gray-50 border border-gray-200 rounded-xl p-4 min-h-[120px] text-gray-600 text-base leading-relaxed focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all resize-none"
+                        />
+                        {/* Overlay to show interim text style if needed, but simple concatenation often works best for textarea */}
+                    </div>
                 </div>
             </main>
 
