@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 export default function InterviewSessionPage() {
     const router = useRouter();
     const { toast } = useToast();
-    const { questions, setAnswers, answers, currentQuestionIndex, setCurrentQuestionIndex, timeLeft, setTimeLeft, isLoaded } = useInterview();
+    const { questions, setAnswers, answers, currentQuestionIndex, setCurrentQuestionIndex, isLoaded } = useInterview();
     // const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); // REMOVED: Using context for persistence
     const [isListening, setIsListening] = useState(false);
     const [transcript, setTranscript] = useState("");
@@ -132,30 +132,9 @@ export default function InterviewSessionPage() {
         };
     }, [questions, router, isLoaded]); // Added isLoaded
 
-    // Timer Effect
-    useEffect(() => {
-        if (!isLoaded) return;
+    // Timer removed - unlimited interview time
 
-        const timer = setInterval(() => {
-            setTimeLeft((prev) => {
-                if (prev <= 0) {
-                    clearInterval(timer);
-                    // Handle time up (optional: auto-submit or just show 00:00)
-                    return 0;
-                }
-                return prev - 1;
-            });
-        }, 1000);
 
-        return () => clearInterval(timer);
-    }, [isLoaded, setTimeLeft]);
-
-    // Format time helper
-    const formatTime = (seconds: number) => {
-        const mins = Math.floor(seconds / 60);
-        const secs = seconds % 60;
-        return `${mins}:${secs.toString().padStart(2, '0')}`;
-    };
 
     const currentQuestion = questions[currentQuestionIndex];
     const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
@@ -301,15 +280,9 @@ export default function InterviewSessionPage() {
                     <h1 className="text-xl font-bold tracking-tight text-gray-900">
                         Interview in Progress
                     </h1>
-                    <div className="flex items-center gap-4">
-                        <div className={`px-3 py-1.5 rounded-lg font-mono font-medium ${timeLeft < 60 ? "bg-red-50 text-red-600" : "bg-gray-100 text-gray-700"
-                            }`}>
-                            {formatTime(timeLeft)}
-                        </div>
-                        <span className="text-sm font-medium text-gray-500">
-                            Question {currentQuestionIndex + 1} of {questions.length}
-                        </span>
-                    </div>
+                    <span className="text-sm font-medium text-gray-500">
+                        Question {currentQuestionIndex + 1} of {questions.length}
+                    </span>
                 </div>
                 {/* Progress Bar */}
                 <div className="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden">
